@@ -1,2 +1,14 @@
 # gaming-blinks
 A game code with psygame that integrates electroencephalography for a more immersive experience
+
+<img width="1080" height="1080" alt="Flyer_Game" src="https://github.com/user-attachments/assets/26e50f8d-262b-4844-8a9b-cb50fdc87bd4" />
+
+This project was developed within the framework of the leveling course “Applications of Probability and Statistics for Time Series Data Processing”, part of the PhD program in Engineering at ITBA. The work was carried out at the Sleep and Memory Laboratory (https://www.labsuenoymemoria.com/), located within the same institution, and reflects the application of the concepts and procedures covered in the course. The project integrates core notions of programming and EEG signal processing.
+
+Regarding the game design, a conservative approach was adopted, as the main objective was to rely exclusively on Python libraries that are better suited for 2D game development. To introduce movement, sprites were used. The game logic is intentionally simple: the player moves through the environment and must shoot at targets. To increase the level of difficulty, collision detection between the objects within the game environment was implemented. 
+
+The blink detection algorithm is designed to operate under real-time (RT) constraints while maintaining compatibility with an interactive game loop running at a stable frame rate. Although the game rendering operates at a higher frame rate (60 FPS), signal processing and detection are performed in short temporal blocks, ensuring low-latency interaction without compromising computational efficiency. Signals are acquired online using the BrainFlow framework, which provides RT access to EEG/EOG data from the amplifier. To isolate blink-related activity and suppress irrelevant frequency components, the signal is filtered in real time using a fourth-order Butterworth bandpass filter between 0.5 and 10 Hz. The filter is applied in a stateful manner, preserving its internal state across consecutive blocks in order to avoid edge artifacts and ensure temporal continuity.
+
+Filtered samples are stored in a rolling buffer corresponding to a six-second window, which allows inspection of recent signal history while keeping memory usage bounded. For detection, each incoming block is analyzed independently by computing the absolute amplitude and identifying its maximum value. A blink candidate is detected when this value exceeds a predefined amplitude threshold and satisfies a refractory constraint, preventing multiple detections of the same physiological event. 
+
+To reduce false positives during signal stabilization, an initial warm-up period is enforced during which detections are ignored. Additionally, a refractory interval of 500 ms is applied after each detected blink, ensuring temporal separation between events. 
