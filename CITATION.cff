@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this repository or parts of its code in your work, please cite it as follows:"
+authors:
+  - family-names: Gorosito
+    given-names: M. Laura
+    affiliation: "Sleep and Memory Laboratory, ITBA"
+  - family-names: Forcato
+    given-names: Cecilia
+    affiliation: "Sleep and Memory Laboratory, ITBA"
+  - family-names: Rodrigo
+    given-names: Ramele
+    affiliation: "Centro de Inteligencia Computacional, Departamento de Informática, ITBA"
+title: "gaming-blinks: A real-time EEG/EOG blink-controlled game"
+version: 1.0.0
+date-released: 2025-01-01
+repository-code: "https://github.com/mlgorosito-glitch/gaming-blinks"
+license: MIT
