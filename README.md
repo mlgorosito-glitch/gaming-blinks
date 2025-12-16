@@ -26,4 +26,18 @@ The sampling frequency (fs) is determined by the amplifier configuration. In thi
 
 Filtered samples are stored in a rolling buffer spanning a 6-second window, which provides temporal context for visualization and inspection but does not influence the detection decision. Blink detection is performed exclusively on the most recent processed block by identifying the maximum absolute amplitude and comparing it against a predefined voltage threshold. A refractory period is applied to prevent multiple detections of the same physiological event, ensuring robust and stable blink detection during real-time interaction.
 
+## Requirements
+
+The project requires the following Python packages:
+
+- numpy
+- scipy
+- matplotlib
+- pygame
+- brainflow
+
+Dependencies can be installed using:
+```bash
+pip install -r requirements.txt
+
 ## Real-Time Blink Detection Algorithm
